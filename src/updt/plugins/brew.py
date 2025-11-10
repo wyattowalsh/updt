@@ -24,7 +24,7 @@ class BrewPlugin(PluginBase):
             return False
 
     async def check_updates(self, project_path: Path | None = None) -> list[UpdateInfo]:
-        """Check for available Homebrew updates."""
+        """Check for available Homebrew updates (formulae and casks)."""
         if not await self.is_available():
             return []
 
@@ -35,7 +35,7 @@ class BrewPlugin(PluginBase):
             logger.info("Updating Homebrew package index...")
             await self.run_command(["brew", "update"], timeout=120)
 
-            # Check for outdated packages
+            # Check for outdated formulae
             stdout, stderr, exit_code = await self.run_command(
                 ["brew", "outdated", "--verbose"],
                 timeout=60,
@@ -58,10 +58,39 @@ class BrewPlugin(PluginBase):
                                 latest_version=latest,
                                 is_global=True,
                                 status=UpdateStatus.AVAILABLE,
+                                metadata={"type": "formula"},
                             )
                         )
 
-            logger.info(f"Found {len(updates)} Homebrew updates")
+            # Check for outdated casks
+            logger.info("Checking Homebrew casks...")
+            stdout2, stderr2, exit_code2 = await self.run_command(
+                ["brew", "outdated", "--cask", "--verbose"],
+                timeout=60,
+            )
+
+            if exit_code2 == 0 and stdout2:
+                for line in stdout2.strip().split("\n"):
+                    if not line.strip():
+                        continue
+
+                    # Parse cask outdated output
+                    match = re.match(r"(\S+)\s+\(([^)]+)\)\s+(?:<|!=)\s+(\S+)", line)
+                    if match:
+                        package, current, latest = match.groups()
+                        updates.append(
+                            UpdateInfo(
+                                ecosystem="brew",
+                                package=package,
+                                current_version=current,
+                                latest_version=latest,
+                                is_global=True,
+                                status=UpdateStatus.AVAILABLE,
+                                metadata={"type": "cask"},
+                            )
+                        )
+
+            logger.info(f"Found {len(updates)} Homebrew updates (formulae + casks)")
 
         except Exception as e:
             logger.exception(f"Error checking Homebrew updates: {e}")
@@ -87,11 +116,21 @@ class BrewPlugin(PluginBase):
             )
 
         try:
-            logger.info(f"Updating {update_info.package} via Homebrew...")
-            stdout, stderr, exit_code = await self.run_command(
-                ["brew", "upgrade", update_info.package],
-                timeout=600,
-            )
+            # Check if it's a cask or formula
+            is_cask = update_info.metadata and update_info.metadata.get("type") == "cask"
+
+            if is_cask:
+                logger.info(f"Updating cask {update_info.package} via Homebrew...")
+                stdout, stderr, exit_code = await self.run_command(
+                    ["brew", "upgrade", "--cask", update_info.package],
+                    timeout=600,
+                )
+            else:
+                logger.info(f"Updating formula {update_info.package} via Homebrew...")
+                stdout, stderr, exit_code = await self.run_command(
+                    ["brew", "upgrade", update_info.package],
+                    timeout=600,
+                )
 
             duration = (datetime.now() - start_time).total_seconds()
 

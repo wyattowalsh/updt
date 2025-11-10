@@ -21,6 +21,7 @@ from .plugins import (  # noqa: F401
     cargo,
     conda,
     gem,
+    mas,
     npm,
     nvm,
     pip,

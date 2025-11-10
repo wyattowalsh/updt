@@ -6,7 +6,7 @@ A powerful CLI tool to detect and update dependencies across multiple package ma
 
 ## Features
 
-- 🔄 **Multi-ecosystem support**: Manages updates for 15+ package managers including brew, npm, uv, pip, pipx, conda, poetry, yarn, pnpm, cargo, gem, bundler, and version managers (nvm, rvm, pyenv)
+- 🔄 **Multi-ecosystem support**: Manages updates for 16 package managers including brew (formulae + casks), Mac App Store, npm, uv, pip, pipx, conda, poetry, yarn, pnpm, cargo, gem, bundler, and version managers (nvm, rvm, pyenv)
 - 🎯 **Smart detection**: Automatically detects installed package managers and available updates
 - ⚡ **Async operations**: Fast concurrent update checking and execution
 - 🎨 **Rich CLI**: Beautiful terminal output with Rich and Textual TUI
@@ -15,6 +15,7 @@ A powerful CLI tool to detect and update dependencies across multiple package ma
 - 🧪 **Dry-run mode**: Preview changes before applying them
 - 🔌 **Plugin architecture**: Extensible plugin system for new package managers
 - 🔢 **Version managers**: Support for nvm, rvm, and pyenv to manage language versions
+- 🍎 **macOS Integration**: Full support for Homebrew casks and Mac App Store apps
 
 ## Installation
 
@@ -137,7 +138,7 @@ UPDT_DRY_RUN=true
 
 ## Supported Package Managers
 
-### Fully Implemented (15 plugins) ✅
+### Fully Implemented (16 plugins) ✅
 
 #### Python Ecosystem (6 plugins)
 - **UV** (`uv`) - Modern Python package manager ✅
@@ -158,14 +159,16 @@ UPDT_DRY_RUN=true
 - **Bundler** (`bundler`) - Ruby dependency manager ✅
 - **RVM** (`rvm`) - Ruby version manager ✅
 
-#### Other Languages (2 plugins)
+#### macOS Ecosystem (2 plugins)
+- **Homebrew** (`brew`) - Package manager (formulae + casks) ✅
+- **Mac App Store** (`mas`) - App Store CLI updates ✅
+
+#### Other Languages (1 plugin)
 - **Cargo** (`cargo`) - Rust package manager ✅
-- **Homebrew** (`brew`) - macOS package manager ✅
 
 ### Scaffolded (can be easily implemented)
 
 - **macOS Software Update** (`softwareupdate`) - System updates
-- **Mac App Store** (`mas`) - App Store applications
 
 ## Development
 
