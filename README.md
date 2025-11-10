@@ -43,6 +43,8 @@ pip install updt
 updt check
 ```
 
+With progress indicator showing which ecosystems are being checked.
+
 ### Check updates for a specific project
 
 ```bash
@@ -55,11 +57,29 @@ updt check --project /path/to/project
 updt update
 ```
 
+Shows progress and duration for each update.
+
 ### Dry run (preview updates)
 
 ```bash
 updt update --dry-run
 ```
+
+### Launch interactive TUI
+
+```bash
+updt tui
+```
+
+Interactive Text User Interface for managing updates with keyboard navigation.
+
+### List available plugins
+
+```bash
+updt list-plugins
+```
+
+Shows all registered package manager plugins.
 
 ### Show configuration
 
@@ -111,16 +131,21 @@ UPDT_DRY_RUN=true
 
 ## Supported Package Managers
 
-- **Homebrew** (`brew`) - macOS package manager
+### Fully Implemented (7 plugins)
+
+- **Homebrew** (`brew`) - macOS package manager ✅
+- **UV** (`uv`) - Modern Python package manager ✅
+- **Pip** (`pip`) - Python package installer ✅
+- **NPM** (`npm`) - Node.js package manager ✅
+- **Yarn** (`yarn`) - Alternative Node.js package manager ✅
+- **Cargo** (`cargo`) - Rust package manager ✅
+- **Poetry** (`poetry`) - Python dependency management ✅
+
+### Scaffolded (can be easily implemented)
+
 - **macOS Software Update** (`softwareupdate`) - System updates
 - **Mac App Store** (`mas`) - App Store applications
-- **UV** (`uv`) - Modern Python package manager
-- **Pip** (`pip`) - Python package installer
-- **NPM** (`npm`) - Node.js package manager
-- **Yarn** (`yarn`) - Alternative Node.js package manager
 - **PNPM** (`pnpm`) - Fast Node.js package manager
-- **Cargo** (`cargo`) - Rust package manager
-- **Poetry** (`poetry`) - Python dependency management
 - **RubyGems** (`gem`) - Ruby package manager
 - **Bundler** (`bundler`) - Ruby dependency manager
 
