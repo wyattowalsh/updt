@@ -14,7 +14,7 @@ from .logging import setup_logging
 from .models.config import UpdtConfig
 
 # Import plugins to register them
-from .plugins import brew, npm, uv_plugin  # noqa: F401
+from .plugins import brew, cargo, npm, pip, uv_plugin  # noqa: F401
 from .updater import UpdateManager
 
 app = typer.Typer(
