@@ -30,23 +30,29 @@ class UpdateManager:
         logger.info("Initializing plugins...")
 
         for name, plugin_class in self.registry.get_all().items():
-            # Check if this ecosystem is enabled in config
-            enabled = getattr(self.config.ecosystems, name, False)
-            if not enabled:
-                logger.debug(f"Skipping disabled plugin: {name}")
-                continue
+            try:
+                # Check if this ecosystem is enabled in config
+                enabled = getattr(self.config.ecosystems, name, False)
+                if not enabled:
+                    logger.debug(f"Skipping disabled plugin: {name}")
+                    continue
 
-            # Create plugin instance
-            plugin = plugin_class(config=self.config.model_dump())
+                # Create plugin instance
+                plugin = plugin_class(config=self.config.model_dump())
 
-            # Check if plugin is available
-            if await plugin.is_available():
-                self._plugins.append(plugin)
-                logger.info(f"Initialized plugin: {name}")
-            else:
-                logger.debug(f"Plugin not available: {name}")
+                # Check if plugin is available
+                if await plugin.is_available():
+                    self._plugins.append(plugin)
+                    logger.info(f"Initialized plugin: {name}")
+                else:
+                    logger.debug(f"Plugin not available: {name}")
+            except Exception as e:
+                logger.error(f"Error initializing plugin {name}: {e}")
 
         logger.info(f"Initialized {len(self._plugins)} plugins")
+
+        if not self._plugins:
+            logger.warning("No plugins were initialized. Check your configuration.")
 
     async def check_all_updates(
         self,

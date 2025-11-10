@@ -10,6 +10,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class EcosystemConfig(BaseModel):
     """Configuration for individual package manager ecosystems."""
 
+    model_config = {"extra": "allow"}  # Allow extra fields for testing
+
     brew: bool = True
     softwareupdate: bool = True
     mas: bool = True

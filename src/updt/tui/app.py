@@ -4,7 +4,9 @@ from textual.app import App, ComposeResult
 from textual.containers import Container, Vertical
 from textual.widgets import Button, DataTable, Footer, Header, Static
 
+from ..models.config import UpdtConfig
 from ..models.update import UpdateInfo
+from ..updater import UpdateManager
 
 
 class UpdtTUI(App):
@@ -40,6 +42,10 @@ class UpdtTUI(App):
     Button {
         margin: 0 1;
     }
+
+    DataTable {
+        height: 1fr;
+    }
     """
 
     BINDINGS = [
@@ -53,6 +59,8 @@ class UpdtTUI(App):
         """Initialize the TUI."""
         super().__init__(*args, **kwargs)
         self.updates: list[UpdateInfo] = []
+        self.config = UpdtConfig()
+        self.manager: UpdateManager | None = None
 
     def compose(self) -> ComposeResult:
         """Create child widgets for the app."""
@@ -66,7 +74,7 @@ class UpdtTUI(App):
                 Button("Refresh", id="refresh-btn"),
                 classes="button-container",
             ),
-            DataTable(),
+            DataTable(id="updates-table"),
         )
         yield Footer()
 
@@ -88,19 +96,45 @@ class UpdtTUI(App):
     async def action_check(self) -> None:
         """Check for updates."""
         status = self.query_one("#status", Static)
+        status.update("Initializing plugins...")
+
+        # Initialize manager if not already done
+        if not self.manager:
+            self.manager = UpdateManager(self.config)
+            await self.manager.initialize()
+
         status.update("Checking for updates...")
-        # TODO: Implement actual update checking
-        # This would integrate with UpdateManager
+        self.updates = await self.manager.check_all_updates()
+
         await self.action_refresh()
-        status.update(f"Found {len(self.updates)} updates")
+
+        if self.updates:
+            status.update(f"Found {len(self.updates)} updates")
+        else:
+            status.update("All packages are up to date!")
 
     async def action_update(self) -> None:
         """Perform updates."""
+        if not self.updates:
+            status = self.query_one("#status", Static)
+            status.update("No updates available. Check for updates first.")
+            return
+
         status = self.query_one("#status", Static)
-        status.update("Updating packages...")
-        # TODO: Implement actual updates
-        # This would integrate with UpdateManager
-        status.update("Updates complete!")
+        status.update(f"Updating {len(self.updates)} packages...")
+
+        if not self.manager:
+            self.manager = UpdateManager(self.config)
+            await self.manager.initialize()
+
+        results = await self.manager.perform_updates(self.updates, dry_run=False)
+
+        success_count = sum(1 for r in results if r.status.value == "success")
+        status.update(f"Updated {success_count} of {len(self.updates)} packages")
+
+        # Clear updates after performing them
+        self.updates = []
+        await self.action_refresh()
 
     async def action_refresh(self) -> None:
         """Refresh the display."""

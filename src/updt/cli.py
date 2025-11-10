@@ -7,6 +7,7 @@ from typing import Annotated
 import typer
 from loguru import logger
 from rich.console import Console
+from rich.progress import Progress, SpinnerColumn, TextColumn
 from rich.table import Table
 
 from . import __version__
@@ -14,7 +15,7 @@ from .logging import setup_logging
 from .models.config import UpdtConfig
 
 # Import plugins to register them
-from .plugins import brew, cargo, npm, pip, uv_plugin  # noqa: F401
+from .plugins import brew, cargo, npm, pip, poetry, uv_plugin, yarn  # noqa: F401
 from .updater import UpdateManager
 
 app = typer.Typer(
@@ -69,10 +70,18 @@ def check(
 
     async def _check() -> None:
         """Async check implementation."""
-        manager = UpdateManager(config)
-        await manager.initialize()
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            console=console,
+        ) as progress:
+            task = progress.add_task("Initializing plugins...", total=None)
+            manager = UpdateManager(config)
+            await manager.initialize()
 
-        updates = await manager.check_all_updates(project_path=project)
+            progress.update(task, description="Checking for updates...")
+            updates = await manager.check_all_updates(project_path=project)
+            progress.stop()
 
         if not updates:
             console.print("[green]✓[/green] All packages are up to date!")
@@ -135,26 +144,35 @@ def update(
 
     async def _update() -> None:
         """Async update implementation."""
-        manager = UpdateManager(config)
-        await manager.initialize()
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            console=console,
+        ) as progress:
+            task = progress.add_task("Initializing plugins...", total=None)
+            manager = UpdateManager(config)
+            await manager.initialize()
 
-        # Check for updates
-        updates = await manager.check_all_updates(project_path=project)
+            progress.update(task, description="Checking for updates...")
+            updates = await manager.check_all_updates(project_path=project)
 
-        if not updates:
-            console.print("[green]✓[/green] All packages are up to date!")
-            return
+            if not updates:
+                progress.stop()
+                console.print("[green]✓[/green] All packages are up to date!")
+                return
 
-        console.print(f"\n[bold]Found {len(updates)} updates[/bold]\n")
+            console.print(f"\n[bold]Found {len(updates)} updates[/bold]\n")
 
-        # Perform updates
-        results = await manager.perform_updates(updates, dry_run=dry_run)
+            progress.update(task, description=f"Updating {len(updates)} packages...")
+            results = await manager.perform_updates(updates, dry_run=dry_run)
+            progress.stop()
 
         # Display results
         table = Table(title="Update Results")
         table.add_column("Package", style="magenta")
         table.add_column("Status", style="cyan")
         table.add_column("Message")
+        table.add_column("Duration", style="dim")
 
         for result in results:
             status_emoji = {
@@ -169,15 +187,32 @@ def update(
                 "skipped": "yellow",
             }.get(result.status.value, "white")
 
+            duration_str = f"{result.duration:.1f}s" if result.duration else "N/A"
+
             table.add_row(
                 result.update_info.package,
                 f"[{status_color}]{status_emoji} {result.status.value}[/{status_color}]",
                 result.message,
+                duration_str,
             )
 
         console.print(table)
 
     asyncio.run(_update())
+
+
+@app.command()
+def tui(
+    project: Annotated[
+        Path | None,
+        typer.Option("--project", "-p", help="Project directory to check"),
+    ] = None,
+) -> None:
+    """Launch interactive Text User Interface."""
+    from .tui import UpdtTUI
+
+    app_tui = UpdtTUI()
+    app_tui.run()
 
 
 @app.command()
@@ -204,6 +239,22 @@ def config(
             status = "✓" if enabled else "✗"
             color = "green" if enabled else "red"
             console.print(f"  [{color}]{status}[/{color}] {name}")
+
+
+@app.command()
+def list_plugins() -> None:
+    """List all available plugins."""
+    from .plugins.registry import registry
+
+    # Import all plugins to register them
+
+    console.print("[bold]Available Plugins:[/bold]\n")
+
+    plugins = registry.get_all()
+    for name in sorted(plugins.keys()):
+        console.print(f"  • {name}")
+
+    console.print(f"\n[dim]Total: {len(plugins)} plugins[/dim]")
 
 
 if __name__ == "__main__":
