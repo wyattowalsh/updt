@@ -45,17 +45,19 @@ default_mode = "plan"
 [tool.updt.ecosystems]
 # Enable/disable specific package managers
 brew = true
-softwareupdate = true
-mas = true
-uv = true
-pip = true
-npm = true
-yarn = true
-pnpm = true
-gem = true
 bundler = true
 cargo = true
+conda = true
+gem = true
+mas = true
+npm = true
+pip = true
+pipx = true
+pnpm = true
 poetry = true
+softwareupdate = true
+uv = true
+yarn = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

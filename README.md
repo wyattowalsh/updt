@@ -102,17 +102,19 @@ timeout = 300
 
 [tool.updt.ecosystems]
 brew = true
-softwareupdate = true
-mas = true
-uv = true
-pip = true
-npm = true
-yarn = true
-pnpm = true
-gem = true
 bundler = true
 cargo = true
+conda = true
+gem = true
+mas = true
+npm = true
+pip = true
+pipx = true
+pnpm = true
 poetry = true
+softwareupdate = true
+uv = true
+yarn = true
 ```
 
 Or use environment variables with `UPDT_` prefix:
@@ -131,23 +133,32 @@ UPDT_DRY_RUN=true
 
 ## Supported Package Managers
 
-### Fully Implemented (7 plugins)
+### Fully Implemented (12 plugins) ✅
 
-- **Homebrew** (`brew`) - macOS package manager ✅
+#### Python Ecosystem
 - **UV** (`uv`) - Modern Python package manager ✅
 - **Pip** (`pip`) - Python package installer ✅
-- **NPM** (`npm`) - Node.js package manager ✅
-- **Yarn** (`yarn`) - Alternative Node.js package manager ✅
-- **Cargo** (`cargo`) - Rust package manager ✅
+- **Pipx** (`pipx`) - Install Python applications in isolated environments ✅
+- **Conda** (`conda`) - Package, dependency and environment manager ✅
 - **Poetry** (`poetry`) - Python dependency management ✅
+
+#### Node.js Ecosystem
+- **NPM** (`npm`) - Node.js package manager ✅
+- **Yarn** (`yarn`) - Fast, reliable Node.js package manager ✅
+- **PNPM** (`pnpm`) - Fast, disk space efficient package manager ✅
+
+#### Ruby Ecosystem
+- **RubyGems** (`gem`) - Ruby package manager ✅
+- **Bundler** (`bundler`) - Ruby dependency manager ✅
+
+#### Other Languages
+- **Cargo** (`cargo`) - Rust package manager ✅
+- **Homebrew** (`brew`) - macOS package manager ✅
 
 ### Scaffolded (can be easily implemented)
 
 - **macOS Software Update** (`softwareupdate`) - System updates
 - **Mac App Store** (`mas`) - App Store applications
-- **PNPM** (`pnpm`) - Fast Node.js package manager
-- **RubyGems** (`gem`) - Ruby package manager
-- **Bundler** (`bundler`) - Ruby dependency manager
 
 ## Development
 

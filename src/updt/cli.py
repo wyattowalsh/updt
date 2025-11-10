@@ -15,7 +15,20 @@ from .logging import setup_logging
 from .models.config import UpdtConfig
 
 # Import plugins to register them
-from .plugins import brew, cargo, npm, pip, poetry, uv_plugin, yarn  # noqa: F401
+from .plugins import (  # noqa: F401
+    brew,
+    bundler,
+    cargo,
+    conda,
+    gem,
+    npm,
+    pip,
+    pipx,
+    pnpm,
+    poetry,
+    uv_plugin,
+    yarn,
+)
 from .updater import UpdateManager
 
 app = typer.Typer(
