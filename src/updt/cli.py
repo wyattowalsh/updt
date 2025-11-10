@@ -22,10 +22,13 @@ from .plugins import (  # noqa: F401
     conda,
     gem,
     npm,
+    nvm,
     pip,
     pipx,
     pnpm,
     poetry,
+    pyenv,
+    rvm,
     uv_plugin,
     yarn,
 )

@@ -6,7 +6,7 @@ A powerful CLI tool to detect and update dependencies across multiple package ma
 
 ## Features
 
-- 🔄 **Multi-ecosystem support**: Manages updates for brew, npm, uv/pip, yarn, pnpm, cargo, poetry, gem, bundler, mas, and macOS Software Update
+- 🔄 **Multi-ecosystem support**: Manages updates for 15+ package managers including brew, npm, uv, pip, pipx, conda, poetry, yarn, pnpm, cargo, gem, bundler, and version managers (nvm, rvm, pyenv)
 - 🎯 **Smart detection**: Automatically detects installed package managers and available updates
 - ⚡ **Async operations**: Fast concurrent update checking and execution
 - 🎨 **Rich CLI**: Beautiful terminal output with Rich and Textual TUI
@@ -14,6 +14,7 @@ A powerful CLI tool to detect and update dependencies across multiple package ma
 - 🔧 **Configurable**: Flexible configuration via pyproject.toml, .env, or environment variables
 - 🧪 **Dry-run mode**: Preview changes before applying them
 - 🔌 **Plugin architecture**: Extensible plugin system for new package managers
+- 🔢 **Version managers**: Support for nvm, rvm, and pyenv to manage language versions
 
 ## Installation
 
@@ -108,10 +109,13 @@ conda = true
 gem = true
 mas = true
 npm = true
+nvm = true
 pip = true
 pipx = true
 pnpm = true
 poetry = true
+pyenv = true
+rvm = true
 softwareupdate = true
 uv = true
 yarn = true
@@ -133,25 +137,28 @@ UPDT_DRY_RUN=true
 
 ## Supported Package Managers
 
-### Fully Implemented (12 plugins) ✅
+### Fully Implemented (15 plugins) ✅
 
-#### Python Ecosystem
+#### Python Ecosystem (6 plugins)
 - **UV** (`uv`) - Modern Python package manager ✅
 - **Pip** (`pip`) - Python package installer ✅
 - **Pipx** (`pipx`) - Install Python applications in isolated environments ✅
 - **Conda** (`conda`) - Package, dependency and environment manager ✅
 - **Poetry** (`poetry`) - Python dependency management ✅
+- **Pyenv** (`pyenv`) - Python version manager ✅
 
-#### Node.js Ecosystem
+#### Node.js Ecosystem (4 plugins)
 - **NPM** (`npm`) - Node.js package manager ✅
 - **Yarn** (`yarn`) - Fast, reliable Node.js package manager ✅
 - **PNPM** (`pnpm`) - Fast, disk space efficient package manager ✅
+- **NVM** (`nvm`) - Node.js version manager ✅
 
-#### Ruby Ecosystem
+#### Ruby Ecosystem (3 plugins)
 - **RubyGems** (`gem`) - Ruby package manager ✅
 - **Bundler** (`bundler`) - Ruby dependency manager ✅
+- **RVM** (`rvm`) - Ruby version manager ✅
 
-#### Other Languages
+#### Other Languages (2 plugins)
 - **Cargo** (`cargo`) - Rust package manager ✅
 - **Homebrew** (`brew`) - macOS package manager ✅
 

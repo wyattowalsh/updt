@@ -19,10 +19,13 @@ class EcosystemConfig(BaseModel):
     gem: bool = True
     mas: bool = True
     npm: bool = True
+    nvm: bool = True
     pip: bool = True
     pipx: bool = True
     pnpm: bool = True
     poetry: bool = True
+    pyenv: bool = True
+    rvm: bool = True
     softwareupdate: bool = True
     uv: bool = True
     yarn: bool = True
