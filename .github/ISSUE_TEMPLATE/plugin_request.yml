@@ -1,0 +1,90 @@
+name: 🔌 Plugin Request
+description: Request support for a new package manager
+title: "[Plugin]: "
+labels: ["plugin", "enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Request support for a new package manager plugin!
+
+  - type: input
+    id: package-manager
+    attributes:
+      label: Package Manager Name
+      description: Name of the package manager
+      placeholder: e.g., dnf, apt, flatpak, snap
+    validations:
+      required: true
+
+  - type: input
+    id: ecosystem
+    attributes:
+      label: Ecosystem
+      description: What ecosystem does this belong to?
+      placeholder: e.g., Python, Node.js, Ruby, System
+    validations:
+      required: true
+
+  - type: input
+    id: website
+    attributes:
+      label: Official Website/Documentation
+      description: Link to official documentation
+      placeholder: https://...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform Support
+      description: What platforms does this package manager support?
+      multiple: true
+      options:
+        - macOS
+        - Linux
+        - Windows
+        - Cross-platform
+    validations:
+      required: true
+
+  - type: textarea
+    id: commands
+    attributes:
+      label: Key Commands
+      description: Essential commands for checking/updating
+      placeholder: |
+        - Check updates: `pkgmgr outdated`
+        - Perform update: `pkgmgr upgrade <package>`
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case
+      description: Why is this package manager important to support?
+      placeholder: Describe common use cases
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Information
+      description: Any other relevant details
+      placeholder: Unique features, gotchas, etc.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have checked this plugin doesn't already exist
+          required: true
+        - label: This package manager is actively maintained
+          required: true
+        - label: I am willing to help test this plugin
+          required: false

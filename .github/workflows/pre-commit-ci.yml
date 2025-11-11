@@ -1,0 +1,29 @@
+name: Pre-commit CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: pre-commit/action@v3.0.1
+        env:
+          SKIP: mypy,bandit  # Skip slow checks, run in main CI
+
+      - name: Auto-commit changes
+        if: failure()
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "style: auto-fix pre-commit issues"
+          commit_user_name: "pre-commit-ci[bot]"
+          commit_user_email: "pre-commit-ci[bot]@users.noreply.github.com"

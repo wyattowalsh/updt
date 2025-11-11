@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Documentation
+    url: https://wyattowalsh.github.io/updtr/
+    about: Read the comprehensive documentation
+  - name: 💬 Discussions
+    url: https://github.com/wyattowalsh/updtrr/discussions
+    about: Ask questions and discuss ideas
+  - name: 🔒 Security Issue
+    url: https://github.com/wyattowalsh/updtrr/security/advisories/new
+    about: Report a security vulnerability privately
