@@ -1,0 +1,40 @@
+{
+	"servers": {
+		"all": {
+			"type": "stdio",
+			"command": "npx",
+			"args":    ["-y","mcp-remote","https://mcp.w4w.dev/mcp"]
+		},
+		"reasoning": {
+			"type": "stdio",
+			"command": "npx",
+			"args": ["-y", "mcp-remote", "https://mcp.w4w.dev/mcp/reasoning"]
+		},
+		"web-search": {
+			"type": "stdio",
+			"command": "npx",
+			"args": ["-y", "mcp-remote", "https://mcp.w4w.dev/mcp/web-search"]
+		},
+		"default": {
+			"type": "stdio",
+			"command": "npx",
+			"args": ["-y", "mcp-remote", "https://mcp.w4w.dev/mcp/default"]
+		},
+		"research": {
+			"type": "stdio",
+			"command": "npx",
+			"args": ["-y", "mcp-remote", "https://mcp.w4w.dev/mcp/research"]
+		},
+		"doc-tools": {
+			"type": "stdio",
+			"command": "npx",
+			"args": ["-y", "mcp-remote", "https://mcp.w4w.dev/mcp/doc-tools"]
+		},
+		"data": {
+			"type": "stdio", 
+			"command": "npx",
+			"args": ["-y", "mcp-remote", "https://mcp.w4w.dev/mcp/data"]
+		}
+	},
+	"inputs": []
+}
