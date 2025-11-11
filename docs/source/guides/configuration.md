@@ -1,14 +1,14 @@
 # Configuration Guide
 
-Learn how to configure updt for your needs.
+Learn how to configure updtr for your needs.
 
 ## Configuration Sources
 
-updt loads configuration from multiple sources (in order of precedence):
+updtr loads configuration from multiple sources (in order of precedence):
 
-1. Environment variables (prefixed with `UPDT_`)
+1. Environment variables (prefixed with `UPDTR_`)
 2. `.env` file in current directory
-3. `pyproject.toml` `[tool.updt]` section
+3. `pyproject.toml` `[tool.updtr]` section
 4. Default values
 
 ## Configuration Options

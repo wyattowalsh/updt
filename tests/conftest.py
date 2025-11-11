@@ -6,10 +6,10 @@ from typing import AsyncGenerator, Generator
 
 import pytest
 
-from updt.models.config import EcosystemConfig, UpdtConfig
-from updt.models.update import UpdateInfo, UpdateStatus
-from updt.plugins.base import PluginBase
-from updt.plugins.registry import PluginRegistry
+from updtr.models.config import EcosystemConfig, UpdtConfig
+from updtr.models.update import UpdateInfo, UpdateStatus
+from updtr.plugins.base import PluginBase
+from updtr.plugins.registry import PluginRegistry
 
 
 @pytest.fixture
@@ -71,7 +71,7 @@ def mock_plugin_registry() -> PluginRegistry:
             ]
         
         async def perform_update(self, update_info, dry_run=False):
-            from updt.models.update import UpdateResult
+            from updtr.models.update import UpdateResult
             
             return UpdateResult(
                 update_info=update_info,

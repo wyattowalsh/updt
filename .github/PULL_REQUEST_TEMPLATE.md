@@ -50,7 +50,7 @@ Fixes #
 # Commands you ran to test
 uv run pytest
 uv run ruff check .
-updt check
+updtr check
 ```
 
 ## Screenshots/Recordings
@@ -78,7 +78,7 @@ updt check
 - [ ] Implemented `perform_update()` method
 - [ ] Plugin auto-registers via `registry.register()`
 - [ ] Added to `models/config.py` `EcosystemConfig`
-- [ ] Added to `pyproject.toml` `[tool.updt.ecosystems]`
+- [ ] Added to `pyproject.toml` `[tool.updtr.ecosystems]`
 - [ ] Updated `.env.example`
 - [ ] Imported in `cli.py`
 - [ ] Supports async operations

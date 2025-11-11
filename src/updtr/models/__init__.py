@@ -1,4 +1,4 @@
-"""Data models for updt."""
+"""Data models for updtr."""
 
 from .config import EcosystemConfig, UpdtConfig
 from .update import UpdateInfo, UpdateResult

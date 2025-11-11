@@ -1,10 +1,17 @@
-# AGENTS.md - LLM Development Guide for updt
+# AGENTS.md - LLM Development Guide for updtr
 
-This document provides guidance for LLM agents working on the `updt` project.
+This document provides guidance for LLM agents working on the `updtr` project.
 
 ## Project Overview
 
-**updt** is a universal package dependency tracker and updater written in Python. It manages updates across 16 package managers using an extensible plugin architecture.
+**updtr** is a universal package dependency tracker and updater written in Python. It manages updates across 22 package managers using an extensible plugin architecture with full cross-platform support.
+
+### Platform Support
+
+- **macOS**: Homebrew (formulae + casks), Mac App Store
+- **Linux**: APT, DNF, Flatpak
+- **Windows**: Chocolatey, Scoop, Windows Package Manager (winget)
+- **Cross-platform**: Python (uv, pip, pipx, conda, poetry, pyenv), Node.js (npm, yarn, pnpm, nvm), Ruby (gem, bundler, rvm), Rust (cargo)
 
 ### Key Technologies
 
@@ -21,7 +28,7 @@ This document provides guidance for LLM agents working on the `updt` project.
 ### Core Components
 
 ```
-src/updt/
+src/updtr/
 ├── cli.py              # Typer CLI commands
 ├── updater.py          # Core UpdateManager orchestration
 ├── profile.py          # System profile generation
@@ -29,7 +36,7 @@ src/updt/
 ├── models/             # Pydantic data models
 │   ├── config.py       # Configuration models
 │   └── update.py       # Update info/result models
-├── plugins/            # Package manager plugins (16 total)
+├── plugins/            # Package manager plugins (22 total)
 │   ├── base.py         # PluginBase abstract class
 │   ├── registry.py     # Plugin registry
 │   ├── brew.py         # Homebrew (formulae + casks)
@@ -37,7 +44,7 @@ src/updt/
 │   ├── npm.py          # Node.js
 │   ├── pip.py          # Python
 │   ├── cargo.py        # Rust
-│   └── ...             # 11 more plugins
+│   └── ...             # 17 more plugins
 └── tui/                # Textual TUI
     └── app.py          # TUI application
 ```
@@ -77,13 +84,13 @@ registry.register(MyPlugin)
 
 ### Adding a New Plugin
 
-1. Create `src/updt/plugins/mypkg.py`
+1. Create `src/updtr/plugins/mypkg.py`
 2. Inherit from `PluginBase`
 3. Implement required methods
 4. Register at module bottom: `registry.register(MyPlugin)`
 5. Import in `cli.py` to trigger registration
 6. Add ecosystem to `models/config.py` `EcosystemConfig`
-7. Update `pyproject.toml` `[tool.updt.ecosystems]`
+7. Update `pyproject.toml` `[tool.updtr.ecosystems]`
 8. Update `.env.example` with new variable
 
 Example:
@@ -144,21 +151,21 @@ registry.register(MyPkgPlugin)
 
 Configuration is loaded from (in order):
 
-1. `pyproject.toml` `[tool.updt]` section
-2. Environment variables prefixed with `UPDT_`
+1. `pyproject.toml` `[tool.updtr]` section
+2. Environment variables prefixed with `UPDTR_`
 3. `.env` file
 
 Example configuration:
 
 ```toml
-[tool.updt]
+[tool.updtr]
 log_level = "INFO"
 log_format = "text"
 dry_run = false
 max_concurrent_updates = 5
 timeout = 300
 
-[tool.updt.ecosystems]
+[tool.updtr.ecosystems]
 brew = true
 npm = true
 pip = true
@@ -167,14 +174,14 @@ pip = true
 
 ## Common Tasks
 
-### Running updt Locally
+### Running updtr Locally
 
 ```bash
 # Install dependencies
 uv sync --all-extras
 
 # Run CLI
-uv run updt check
+uv run updtr check
 
 # Run tests
 uv run pytest
@@ -188,9 +195,9 @@ uv build
 
 ### Debugging
 
-- Set `UPDT_LOG_LEVEL=DEBUG` for verbose output
-- Use `UPDT_LOG_FORMAT=jsonl` for structured logs
-- Check `~/.updt/logs/` for log files
+- Set `UPDTR_LOG_LEVEL=DEBUG` for verbose output
+- Use `UPDTR_LOG_FORMAT=jsonl` for structured logs
+- Check `~/.updtr/logs/` for log files
 
 ### Building Documentation
 
@@ -201,7 +208,7 @@ uv run sphinx-build -b html source _build/html
 
 ## Plugin Catalog
 
-Current plugins (19):
+Current plugins (22):
 
 ### Python Ecosystem (6)
 - **uv** - Modern Python package manager
@@ -230,6 +237,11 @@ Current plugins (19):
 - **apt** - Advanced Package Tool (Debian, Ubuntu)
 - **dnf** - Dandified YUM (Fedora, RHEL, CentOS)
 - **flatpak** - Universal Linux applications
+
+### Windows Ecosystem (3)
+- **choco** - Chocolatey package manager
+- **scoop** - Scoop package manager
+- **winget** - Windows Package Manager
 
 ### Other (1)
 - **cargo** - Rust package manager
@@ -336,9 +348,9 @@ class SystemProfile:
 
 ## Resources
 
-- **Repository**: https://github.com/wyattowalsh/updt
-- **Documentation**: https://wyattowalsh.github.io/updt/
-- **Issue Tracker**: https://github.com/wyattowalsh/updt/issues
+- **Repository**: https://github.com/wyattowalsh/updtrr
+- **Documentation**: https://wyattowalsh.github.io/updtr/
+- **Issue Tracker**: https://github.com/wyattowalsh/updtrr/issues
 
 ## Questions?
 

@@ -3,8 +3,8 @@
 import pytest
 from unittest.mock import AsyncMock, patch
 
-from updt.models.update import UpdateStatus
-from updt.plugins.npm import NpmPlugin
+from updtr.models.update import UpdateStatus
+from updtr.plugins.npm import NpmPlugin
 
 
 @pytest.fixture

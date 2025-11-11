@@ -60,7 +60,7 @@ body:
       value: |
         - OS: [e.g., macOS 14.0, Ubuntu 22.04]
         - Python version: [e.g., 3.12.0]
-        - updt version: [e.g., 0.1.0]
+        - updtr version: [e.g., 0.1.0]
         - Installation method: [e.g., uvx, pip, uv tool install]
       render: markdown
     validations:
@@ -70,7 +70,7 @@ body:
     id: logs
     attributes:
       label: Logs
-      description: Relevant log output (run with `UPDT_LOG_LEVEL=DEBUG`)
+      description: Relevant log output (run with `UPDTR_LOG_LEVEL=DEBUG`)
       render: shell
 
   - type: textarea

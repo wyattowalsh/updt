@@ -2,11 +2,11 @@
 
 import pytest
 
-from updt.models.config import UpdtConfig
-from updt.models.update import UpdateInfo, UpdateStatus
-from updt.plugins.base import PluginBase
-from updt.plugins.registry import PluginRegistry
-from updt.updater import UpdateManager
+from updtr.models.config import UpdtConfig
+from updtr.models.update import UpdateInfo, UpdateStatus
+from updtr.plugins.base import PluginBase
+from updtr.plugins.registry import PluginRegistry
+from updtr.updater import UpdateManager
 
 
 class MockPlugin(PluginBase):
@@ -36,7 +36,7 @@ class MockPlugin(PluginBase):
 
     async def perform_update(self, update_info, dry_run=False):  # type: ignore
         """Perform update."""
-        from updt.models.update import UpdateResult
+        from updtr.models.update import UpdateResult
 
         if dry_run:
             return UpdateResult(
@@ -85,7 +85,7 @@ async def test_update_manager_check_updates() -> None:
 @pytest.mark.asyncio
 async def test_update_manager_perform_updates() -> None:
     """Test performing updates."""
-    from updt.models.config import EcosystemConfig
+    from updtr.models.config import EcosystemConfig
 
     config = UpdtConfig()
     # Enable mock plugin in config

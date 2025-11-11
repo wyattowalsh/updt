@@ -1,4 +1,4 @@
-# updt
+# updtr
 
 Universal Package Dependency Tracker and Updater
 
@@ -24,19 +24,19 @@ A powerful CLI tool to detect and update dependencies across multiple package ma
 ### Using uvx (recommended)
 
 ```bash
-uvx updt
+uvx updtr
 ```
 
 ### Using uv
 
 ```bash
-uv tool install updt
+uv tool install updtr
 ```
 
 ### Using pip
 
 ```bash
-pip install updt
+pip install updtr
 ```
 
 ## Usage
@@ -44,7 +44,7 @@ pip install updt
 ### Check for updates
 
 ```bash
-updt check
+updtr check
 ```
 
 With progress indicator showing which ecosystems are being checked.
@@ -52,13 +52,13 @@ With progress indicator showing which ecosystems are being checked.
 ### Check updates for a specific project
 
 ```bash
-updt check --project /path/to/project
+updtr check --project /path/to/project
 ```
 
 ### Update all packages
 
 ```bash
-updt update
+updtr update
 ```
 
 Shows progress and duration for each update.
@@ -66,13 +66,13 @@ Shows progress and duration for each update.
 ### Dry run (preview updates)
 
 ```bash
-updt update --dry-run
+updtr update --dry-run
 ```
 
 ### Launch interactive TUI
 
 ```bash
-updt tui
+updtr tui
 ```
 
 Interactive Text User Interface for managing updates with keyboard navigation.
@@ -80,7 +80,7 @@ Interactive Text User Interface for managing updates with keyboard navigation.
 ### List available plugins
 
 ```bash
-updt list-plugins
+updtr list-plugins
 ```
 
 Shows all registered package manager plugins.
@@ -88,13 +88,13 @@ Shows all registered package manager plugins.
 ### Show configuration
 
 ```bash
-updt config --show
+updtr config --show
 ```
 
 ### Generate system profile
 
 ```bash
-updt profile
+updtr profile
 ```
 
 Generate a comprehensive report of all installed packages across ecosystems.
@@ -102,16 +102,16 @@ Generate a comprehensive report of all installed packages across ecosystems.
 Export to file:
 
 ```bash
-updt profile --output packages.json
-updt profile --output packages.md --format markdown
+updtr profile --output packages.json
+updtr profile --output packages.md --format markdown
 ```
 
 ## Configuration
 
-Configure updt via `pyproject.toml`:
+Configure updtr via `pyproject.toml`:
 
 ```toml
-[tool.updt]
+[tool.updtr]
 log_level = "INFO"
 log_format = "jsonl"
 default_mode = "plan"
@@ -119,7 +119,7 @@ dry_run = false
 max_concurrent_updates = 5
 timeout = 300
 
-[tool.updt.ecosystems]
+[tool.updtr.ecosystems]
 brew = true
 bundler = true
 cargo = true
@@ -139,18 +139,18 @@ uv = true
 yarn = true
 ```
 
-Or use environment variables with `UPDT_` prefix:
+Or use environment variables with `UPDTR_` prefix:
 
 ```bash
-export UPDT_LOG_LEVEL=DEBUG
-export UPDT_DRY_RUN=true
+export UPDTR_LOG_LEVEL=DEBUG
+export UPDTR_DRY_RUN=true
 ```
 
 Or create a `.env` file:
 
 ```env
-UPDT_LOG_LEVEL=DEBUG
-UPDT_DRY_RUN=true
+UPDTR_LOG_LEVEL=DEBUG
+UPDTR_DRY_RUN=true
 ```
 
 ## Supported Package Managers
@@ -193,8 +193,8 @@ UPDT_DRY_RUN=true
 
 ```bash
 # Clone the repository
-git clone https://github.com/wyattowalsh/updt.git
-cd updt
+git clone https://github.com/wyattowalsh/updtrr.git
+cd updtr
 
 # Install dependencies
 uv sync --all-extras
@@ -212,7 +212,7 @@ uv run mypy .
 ### Running locally
 
 ```bash
-uv run updt check
+uv run updtr check
 ```
 
 ## Architecture

@@ -1,10 +1,10 @@
 # Plugin System
 
-Understanding updt's plugin architecture.
+Understanding updtr's plugin architecture.
 
 ## Available Plugins
 
-updt includes 16 built-in plugins for different package managers.
+updtr includes 16 built-in plugins for different package managers.
 
 See {doc}`../cli` for the complete list.
 

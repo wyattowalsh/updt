@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to updt will be documented here.
+All notable changes to updtr will be documented here.
 
 ## [0.1.0] - 2024
 

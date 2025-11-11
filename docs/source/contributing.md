@@ -1,12 +1,12 @@
-# Contributing to updt
+# Contributing to updtr
 
 We welcome contributions! Please see AGENTS.md for development guidelines.
 
 ## Development Setup
 
 ```bash
-git clone https://github.com/wyattowalsh/updt.git
-cd updt
+git clone https://github.com/wyattowalsh/updtrr.git
+cd updtr
 uv sync --all-extras
 ```
 

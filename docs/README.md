@@ -1,6 +1,6 @@
-# updt Documentation
+# updtr Documentation
 
-This directory contains the Sphinx documentation for updt.
+This directory contains the Sphinx documentation for updtr.
 
 ## Building Documentation
 

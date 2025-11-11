@@ -1,4 +1,4 @@
-"""Textual TUI application for updt."""
+"""Textual TUI application for updtr."""
 
 from textual.app import App, ComposeResult
 from textual.containers import Container, Vertical

@@ -1,11 +1,11 @@
 # CLI Reference
 
-The **updt** command-line interface provides several commands for managing package updates across multiple ecosystems.
+The **updtr** command-line interface provides several commands for managing package updates across multiple ecosystems.
 
 ## Main Commands
 
-```{click} updt.cli:app
-:prog: updt
+```{click} updtr.cli:app
+:prog: updtr
 :nested: full
 :show-nested:
 ```
@@ -17,8 +17,8 @@ The **updt** command-line interface provides several commands for managing packa
 Check for available updates across all enabled package managers.
 
 ```bash
-updt check
-updt check --project /path/to/project
+updtr check
+updtr check --project /path/to/project
 ```
 
 ### update
@@ -26,8 +26,8 @@ updt check --project /path/to/project
 Perform updates for packages with available updates.
 
 ```bash
-updt update
-updt update --dry-run  # Preview without applying
+updtr update
+updtr update --dry-run  # Preview without applying
 ```
 
 ### profile
@@ -35,10 +35,10 @@ updt update --dry-run  # Preview without applying
 Generate a system package profile showing what's installed via which package manager.
 
 ```bash
-updt profile
-updt profile --format json
-updt profile --output profile.json
-updt profile --output profile.md --format markdown
+updtr profile
+updtr profile --format json
+updtr profile --output profile.json
+updtr profile --output profile.md --format markdown
 ```
 
 ### tui
@@ -46,7 +46,7 @@ updt profile --output profile.md --format markdown
 Launch the interactive Text User Interface for managing updates.
 
 ```bash
-updt tui
+updtr tui
 ```
 
 ### config
@@ -54,7 +54,7 @@ updt tui
 Display current configuration settings.
 
 ```bash
-updt config --show
+updtr config --show
 ```
 
 ### list-plugins
@@ -62,7 +62,7 @@ updt config --show
 List all available plugin modules.
 
 ```bash
-updt list-plugins
+updtr list-plugins
 ```
 
 ## Options
@@ -77,7 +77,7 @@ updt list-plugins
 Many commands support a `--project` option to work with project-specific dependencies:
 
 ```bash
-updt check --project /path/to/project
+updtr check --project /path/to/project
 ```
 
 ## Output Formats
@@ -93,7 +93,7 @@ The `profile` command supports multiple output formats:
 ### Check All Updates
 
 ```bash
-$ updt check
+$ updtr check
 Checking for updates...
 
 Found updates:
@@ -108,7 +108,7 @@ Found updates:
 ### Dry Run Update
 
 ```bash
-$ updt update --dry-run
+$ updtr update --dry-run
 [DRY RUN] Would update python from 3.11.0 to 3.12.0
 [DRY RUN] Would update numpy from 1.24.0 to 1.26.0
 ```
@@ -116,20 +116,20 @@ $ updt update --dry-run
 ### Export Profile to JSON
 
 ```bash
-$ updt profile --output system-profile.json --format json
+$ updtr profile --output system-profile.json --format json
 ✓ Profile exported to system-profile.json
 ```
 
 ### Generate Markdown Report
 
 ```bash
-$ updt profile --output PACKAGES.md --format markdown
+$ updtr profile --output PACKAGES.md --format markdown
 ✓ Profile exported to PACKAGES.md
 ```
 
 ## Configuration
 
-See {doc}`guides/configuration` for details on configuring updt behavior.
+See {doc}`guides/configuration` for details on configuring updtr behavior.
 
 ## Exit Codes
 

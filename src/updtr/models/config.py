@@ -40,16 +40,21 @@ class EcosystemConfig(BaseModel):
     dnf: bool = True
     flatpak: bool = True
 
+    # Windows Ecosystem
+    choco: bool = True
+    scoop: bool = True
+    winget: bool = True
+
     # Other
     cargo: bool = True
     softwareupdate: bool = True
 
 
 class UpdtConfig(BaseSettings):
-    """Main configuration for updt using pydantic-settings."""
+    """Main configuration for updtr using pydantic-settings."""
 
     model_config = SettingsConfigDict(
-        env_prefix="UPDT_",
+        env_prefix="UPDTR_",
         env_file=".env",
         env_file_encoding="utf-8",
         case_sensitive=False,

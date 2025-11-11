@@ -1,9 +1,9 @@
-# updt Documentation
+# updtr Documentation
 
-Welcome to **updt** — a universal package dependency tracker and updater for managing multiple package ecosystems from a single tool.
+Welcome to **updtr** — a universal package dependency tracker and updater for managing multiple package ecosystems from a single tool.
 
 ```{note}
-updt supports 16 package managers including brew, npm, pip, conda, cargo, and more!
+updtr supports 16 package managers including brew, npm, pip, conda, cargo, and more!
 ```
 
 ## Quick Links
@@ -15,14 +15,14 @@ updt supports 16 package managers including brew, npm, pip, conda, cargo, and mo
 :link: guides/quickstart
 :link-type: doc
 
-Install updt and check for updates across all your package managers
+Install updtr and check for updates across all your package managers
 :::
 
 :::{grid-item-card} 📖 User Guide
 :link: guides/index
 :link-type: doc
 
-Learn how to use updt effectively
+Learn how to use updtr effectively
 :::
 
 :::{grid-item-card} 🛠️ CLI Reference
@@ -61,7 +61,7 @@ Python API documentation for developers
 :sync: uvx
 
 ```bash
-uvx updt --help
+uvx updtr --help
 ```
 ::::
 
@@ -69,8 +69,8 @@ uvx updt --help
 :sync: uv
 
 ```bash
-uv tool install updt
-updt --help
+uv tool install updtr
+updtr --help
 ```
 ::::
 
@@ -78,8 +78,8 @@ updt --help
 :sync: pipx
 
 ```bash
-pipx install updt
-updt --help
+pipx install updtr
+updtr --help
 ```
 ::::
 
@@ -87,8 +87,8 @@ updt --help
 :sync: pip
 
 ```bash
-pip install updt
-updt --help
+pip install updtr
+updtr --help
 ```
 ::::
 
@@ -99,25 +99,25 @@ updt --help
 Check for updates across all package managers:
 
 ```bash
-updt check
+updtr check
 ```
 
 Perform updates:
 
 ```bash
-updt update
+updtr update
 ```
 
 Generate a system profile:
 
 ```bash
-updt profile
+updtr profile
 ```
 
 Launch the interactive TUI:
 
 ```bash
-updt tui
+updtr tui
 ```
 
 ## Contents

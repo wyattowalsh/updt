@@ -1,6 +1,6 @@
 """Tests for configuration models."""
 
-from updt.models.config import EcosystemConfig, UpdtConfig
+from updtr.models.config import EcosystemConfig, UpdtConfig
 
 
 def test_ecosystem_config_defaults() -> None:
@@ -11,8 +11,8 @@ def test_ecosystem_config_defaults() -> None:
     assert config.uv is True
 
 
-def test_updt_config_defaults() -> None:
-    """Test default updt configuration."""
+def test_updtr_config_defaults() -> None:
+    """Test default updtr configuration."""
     config = UpdtConfig()
     assert config.log_level == "INFO"
     assert config.log_format == "text"
@@ -22,7 +22,7 @@ def test_updt_config_defaults() -> None:
     assert config.timeout == 300
 
 
-def test_updt_config_custom() -> None:
+def test_updtr_config_custom() -> None:
     """Test custom configuration."""
     config = UpdtConfig(
         log_level="DEBUG",

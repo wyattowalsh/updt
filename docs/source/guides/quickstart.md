@@ -1,6 +1,6 @@
 # Quickstart Guide
 
-Get started with updt in just a few minutes!
+Get started with updtr in just a few minutes!
 
 ## Installation
 
@@ -8,21 +8,21 @@ Get started with updt in just a few minutes!
 
 ::::{tab-item} uvx (recommended)
 ```bash
-uvx updt --help
+uvx updtr --help
 ```
 ::::
 
 ::::{tab-item} uv tool
 ```bash
-uv tool install updt
-updt --help
+uv tool install updtr
+updtr --help
 ```
 ::::
 
 ::::{tab-item} pipx
 ```bash
-pipx install updt
-updt --help
+pipx install updtr
+updtr --help
 ```
 ::::
 
@@ -35,7 +35,7 @@ updt --help
 The most common operation is checking for available updates:
 
 ```bash
-updt check
+updtr check
 ```
 
 This will scan all enabled package managers and display available updates.
@@ -45,13 +45,13 @@ This will scan all enabled package managers and display available updates.
 To apply updates:
 
 ```bash
-updt update
+updtr update
 ```
 
 Or use dry-run mode to preview without applying:
 
 ```bash
-updt update --dry-run
+updtr update --dry-run
 ```
 
 ### Generate System Profile
@@ -59,13 +59,13 @@ updt update --dry-run
 Create a snapshot of all installed packages:
 
 ```bash
-updt profile
+updtr profile
 ```
 
 Export to file:
 
 ```bash
-updt profile --output packages.json
+updtr profile --output packages.json
 ```
 
 ### Interactive TUI
@@ -73,7 +73,7 @@ updt profile --output packages.json
 Launch the text-based user interface:
 
 ```bash
-updt tui
+updtr tui
 ```
 
 ## Configuration
@@ -81,12 +81,12 @@ updt tui
 Create a `.env` file or add to `pyproject.toml`:
 
 ```toml
-[tool.updt]
+[tool.updtr]
 log_level = "INFO"
 dry_run = false
 max_concurrent_updates = 5
 
-[tool.updt.ecosystems]
+[tool.updtr.ecosystems]
 brew = true
 npm = true
 pip = true

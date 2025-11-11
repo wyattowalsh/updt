@@ -1,1 +1,1 @@
-"""Tests for updt."""
+"""Tests for updtr."""

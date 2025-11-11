@@ -3,8 +3,8 @@
 import pytest
 from unittest.mock import patch
 
-from updt.models.update import UpdateStatus
-from updt.plugins.pip import PipPlugin
+from updtr.models.update import UpdateStatus
+from updtr.plugins.pip import PipPlugin
 
 
 @pytest.fixture

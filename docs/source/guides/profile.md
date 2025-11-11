@@ -5,7 +5,7 @@ Generate comprehensive reports of installed packages.
 ## Basic Usage
 
 ```bash
-updt profile
+updtr profile
 ```
 
 ## Export Formats
@@ -18,8 +18,8 @@ updt profile
 
 ```bash
 # Export as JSON
-updt profile --output system.json
+updtr profile --output system.json
 
 # Export as Markdown
-updt profile --output PACKAGES.md --format markdown
+updtr profile --output PACKAGES.md --format markdown
 ```

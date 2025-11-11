@@ -1,13 +1,13 @@
 <div align="center">
 
-# 🔄 updt
+# 🔄 updtr
 
 **Universal Package Dependency Tracker and Updater**
 
 [![Python](https://img.shields.io/badge/Python-3.12+-blue?logo=python&logoColor=white)](https://www.python.org)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![CI](https://github.com/wyattowalsh/updt/workflows/CI/badge.svg)](https://github.com/wyattowalsh/updt/actions)
-[![codecov](https://codecov.io/gh/wyattowalsh/updt/branch/main/graph/badge.svg)](https://codecov.io/gh/wyattowalsh/updt)
+[![CI](https://github.com/wyattowalsh/updtrr/workflows/CI/badge.svg)](https://github.com/wyattowalsh/updtrr/actions)
+[![codecov](https://codecov.io/gh/wyattowalsh/updtrr/branch/main/graph/badge.svg)](https://codecov.io/gh/wyattowalsh/updtrr)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 [Features](#-features) • [Installation](#-installation) • [Quick Start](#-quick-start) • [Plugins](#-supported-package-managers) • [Documentation](#-documentation) • [Contributing](#-contributing)
@@ -18,21 +18,21 @@
 
 ## 📋 Overview
 
-**updt** is a powerful, unified CLI tool that detects and updates dependencies across **16 package managers** and **multiple ecosystems**. Say goodbye to juggling different update commands—`updt` handles them all with a single, intuitive interface.
+**updtr** is a powerful, unified CLI tool that detects and updates dependencies across **22 package managers** and **multiple ecosystems**. Say goodbye to juggling different update commands—`updtr` handles them all with a single, intuitive interface.
 
 ```bash
 # Check for updates across ALL your package managers
-updt check
+updtr check
 
 # Update everything with one command
-updt update
+updtr update
 
 # Or use the beautiful interactive TUI
-updt tui
+updtr tui
 ```
 
 > [!NOTE]
-> **updt** supports Python, Node.js, Ruby, Rust, macOS, and more—all through an extensible plugin architecture.
+> **updtr** supports Python, Node.js, Ruby, Rust, macOS, and more—all through an extensible plugin architecture.
 
 ---
 
@@ -44,7 +44,7 @@ updt tui
 
 ### 🎯 Core Capabilities
 
-- 🔄 **16 Package Managers** — Unified interface for brew, npm, pip, cargo, and more
+- 🔄 **22 Package Managers** — Unified interface for brew, npm, pip, cargo, and more
 - ⚡ **Async Operations** — Fast concurrent update checking and execution
 - 🎨 **Rich CLI & TUI** — Beautiful terminal output with interactive mode
 - 📊 **System Profiling** — Generate reports of installed packages
@@ -73,7 +73,7 @@ updt tui
 <summary><b>Recommended: Using uvx (fastest)</b></summary>
 
 ```bash
-uvx updt
+uvx updtr
 ```
 
 Run directly without installation!
@@ -84,10 +84,10 @@ Run directly without installation!
 <summary><b>Using uv tool install</b></summary>
 
 ```bash
-uv tool install updt
+uv tool install updtr
 ```
 
-Installs updt in an isolated environment.
+Installs updtr in an isolated environment.
 
 </details>
 
@@ -95,7 +95,7 @@ Installs updt in an isolated environment.
 <summary><b>Using pip</b></summary>
 
 ```bash
-pip install updt
+pip install updtr
 ```
 
 Traditional pip installation.
@@ -106,10 +106,10 @@ Traditional pip installation.
 <summary><b>From source</b></summary>
 
 ```bash
-git clone https://github.com/wyattowalsh/updt.git
-cd updt
+git clone https://github.com/wyattowalsh/updtrr.git
+cd updtr
 uv sync --all-extras
-uv run updt --help
+uv run updtr --help
 ```
 
 For development or latest changes.
@@ -124,38 +124,38 @@ For development or latest changes.
 
 ```bash
 # Check for updates across all package managers
-updt check
+updtr check
 
 # Check updates for a specific project
-updt check --project /path/to/project
+updtr check --project /path/to/project
 
 # Update all packages
-updt update
+updtr update
 
 # Preview updates without applying (dry-run)
-updt update --dry-run
+updtr update --dry-run
 
 # Launch interactive TUI
-updt tui
+updtr tui
 
 # List available plugins
-updt list-plugins
+updtr list-plugins
 
 # Show current configuration
-updt config --show
+updtr config --show
 
 # Generate system profile
-updt profile
+updtr profile
 
 # Export profile to file
-updt profile --output packages.json
-updt profile --output packages.md --format markdown
+updtr profile --output packages.json
+updtr profile --output packages.md --format markdown
 ```
 
 ### Example Output
 
 ```console
-$ updt check
+$ updtr check
 ⠋ Checking for updates...
 
 ┏━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━┓
@@ -173,7 +173,7 @@ Found 3 updates across 3 ecosystems
 
 ## 🔌 Supported Package Managers
 
-**updt** currently supports **16 package managers** across multiple ecosystems:
+**updtr** currently supports **22 package managers** across multiple ecosystems:
 
 ### Python Ecosystem (6 plugins)
 
@@ -210,6 +210,22 @@ Found 3 updates across 3 ecosystems
 | **brew** | Homebrew (formulae + casks) | ✅ |
 | **mas** | Mac App Store CLI | ✅ |
 
+### Linux Ecosystem (3 plugins)
+
+| Plugin | Description | Status |
+|--------|-------------|--------|
+| **apt** | Advanced Package Tool (Debian/Ubuntu) | ✅ |
+| **dnf** | Dandified YUM (Fedora/RHEL/CentOS) | ✅ |
+| **flatpak** | Universal Linux applications | ✅ |
+
+### Windows Ecosystem (3 plugins)
+
+| Plugin | Description | Status |
+|--------|-------------|--------|
+| **choco** | Chocolatey package manager | ✅ |
+| **scoop** | Scoop package manager | ✅ |
+| **winget** | Windows Package Manager | ✅ |
+
 ### Other Languages (1 plugin)
 
 | Plugin | Description | Status |
@@ -217,19 +233,19 @@ Found 3 updates across 3 ecosystems
 | **cargo** | Rust package manager | ✅ |
 
 > [!TIP]
-> Need support for another package manager? [Request a plugin](https://github.com/wyattowalsh/updt/issues/new/choose) or [contribute one](#-contributing)!
+> Need support for another package manager? [Request a plugin](https://github.com/wyattowalsh/updtrr/issues/new/choose) or [contribute one](#-contributing)!
 
 ---
 
 ## ⚙️ Configuration
 
-Configure **updt** via `pyproject.toml`, environment variables, or `.env` files:
+Configure **updtr** via `pyproject.toml`, environment variables, or `.env` files:
 
 <details>
 <summary><b>pyproject.toml configuration</b></summary>
 
 ```toml
-[tool.updt]
+[tool.updtr]
 log_level = "INFO"
 log_format = "jsonl"  # or "text"
 default_mode = "plan"
@@ -237,7 +253,7 @@ dry_run = false
 max_concurrent_updates = 5
 timeout = 300  # seconds
 
-[tool.updt.ecosystems]
+[tool.updtr.ecosystems]
 brew = true
 bundler = true
 cargo = true
@@ -261,14 +277,14 @@ yarn = true
 <details>
 <summary><b>Environment variables</b></summary>
 
-All configuration keys can be set via environment variables with `UPDT_` prefix:
+All configuration keys can be set via environment variables with `UPDTR_` prefix:
 
 ```bash
-export UPDT_LOG_LEVEL=DEBUG
-export UPDT_DRY_RUN=true
-export UPDT_MAX_CONCURRENT_UPDATES=10
-export UPDT_ECOSYSTEMS__BREW=true
-export UPDT_ECOSYSTEMS__NPM=false
+export UPDTR_LOG_LEVEL=DEBUG
+export UPDTR_DRY_RUN=true
+export UPDTR_MAX_CONCURRENT_UPDATES=10
+export UPDTR_ECOSYSTEMS__BREW=true
+export UPDTR_ECOSYSTEMS__NPM=false
 ```
 
 </details>
@@ -279,11 +295,11 @@ export UPDT_ECOSYSTEMS__NPM=false
 Create a `.env` file in your project root:
 
 ```env
-UPDT_LOG_LEVEL=DEBUG
-UPDT_LOG_FORMAT=jsonl
-UPDT_DRY_RUN=false
-UPDT_MAX_CONCURRENT_UPDATES=5
-UPDT_TIMEOUT=300
+UPDTR_LOG_LEVEL=DEBUG
+UPDTR_LOG_FORMAT=jsonl
+UPDTR_DRY_RUN=false
+UPDTR_MAX_CONCURRENT_UPDATES=5
+UPDTR_TIMEOUT=300
 ```
 
 </details>
@@ -327,7 +343,7 @@ graph TD
 
 Comprehensive documentation is available:
 
-- 📖 [**Full Documentation**](https://wyattowalsh.github.io/updt/) — Sphinx docs with Shibuya theme
+- 📖 [**Full Documentation**](https://wyattowalsh.github.io/updtr/) — Sphinx docs with Shibuya theme
 - 🚀 [**Quick Start Guide**](docs/source/guides/quickstart.md) — Get started in minutes
 - 🔧 [**Configuration Guide**](docs/source/guides/configuration.md) — Advanced configuration
 - 🔌 [**Plugin Development**](docs/source/guides/plugins.md) — Create custom plugins
@@ -350,8 +366,8 @@ uv run sphinx-build -b html source _build/html
 
 ```bash
 # Clone the repository
-git clone https://github.com/wyattowalsh/updt.git
-cd updt
+git clone https://github.com/wyattowalsh/updtrr.git
+cd updtr
 
 # Install all dependencies (recommended)
 make dev
@@ -422,8 +438,8 @@ pytest -k "test_brew" -v
 ### Project Structure
 
 ```
-updt/
-├── src/updt/               # Source code
+updtr/
+├── src/updtr/               # Source code
 │   ├── cli.py             # Typer CLI commands
 │   ├── updater.py         # Core UpdateManager
 │   ├── profile.py         # System profiling
@@ -454,9 +470,9 @@ Contributions are welcome! Whether it's bug reports, feature requests, documenta
 
 ### Ways to Contribute
 
-1. 🐛 [**Report bugs**](https://github.com/wyattowalsh/updt/issues/new/choose)
-2. ✨ [**Request features**](https://github.com/wyattowalsh/updt/issues/new/choose)
-3. 🔌 [**Request plugins**](https://github.com/wyattowalsh/updt/issues/new/choose)
+1. 🐛 [**Report bugs**](https://github.com/wyattowalsh/updtrr/issues/new/choose)
+2. ✨ [**Request features**](https://github.com/wyattowalsh/updtrr/issues/new/choose)
+3. 🔌 [**Request plugins**](https://github.com/wyattowalsh/updtrr/issues/new/choose)
 4. 💻 **Submit pull requests**
 5. 📝 **Improve documentation**
 
@@ -474,7 +490,7 @@ Contributions are welcome! Whether it's bug reports, feature requests, documenta
 See the [**Plugin Development Guide**](docs/source/guides/plugins.md) or [**AGENTS.md**](AGENTS.md) for detailed instructions.
 
 Quick steps:
-1. Create `src/updt/plugins/mypkg.py`
+1. Create `src/updtr/plugins/mypkg.py`
 2. Inherit from `PluginBase`
 3. Implement required methods
 4. Register plugin
@@ -505,11 +521,11 @@ Built with these amazing tools:
 
 ## 📊 Stats
 
-![GitHub stars](https://img.shields.io/github/stars/wyattowalsh/updt?style=social)
-![GitHub forks](https://img.shields.io/github/forks/wyattowalsh/updt?style=social)
-![GitHub issues](https://img.shields.io/github/issues/wyattowalsh/updt)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/wyattowalsh/updt)
-![GitHub last commit](https://img.shields.io/github/last-commit/wyattowalsh/updt)
+![GitHub stars](https://img.shields.io/github/stars/wyattowalsh/updtrr?style=social)
+![GitHub forks](https://img.shields.io/github/forks/wyattowalsh/updtrr?style=social)
+![GitHub issues](https://img.shields.io/github/issues/wyattowalsh/updtrr)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/wyattowalsh/updtrr)
+![GitHub last commit](https://img.shields.io/github/last-commit/wyattowalsh/updtrr)
 
 ---
 
@@ -517,6 +533,6 @@ Built with these amazing tools:
 
 Made with ❤️ by [wyattowalsh](https://github.com/wyattowalsh)
 
-[⬆ Back to Top](#-updt)
+[⬆ Back to Top](#-updtr)
 
 </div>

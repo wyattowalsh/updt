@@ -3,14 +3,14 @@
 import pytest
 from unittest.mock import AsyncMock, patch
 
-from updt.tui.app import UpdtTUI
+from updtr.tui.app import UpdtTUI
 
 
 def test_tui_initialization():
     """Test TUI initialization."""
     tui = UpdtTUI()
     assert tui is not None
-    assert tui.title == "updt - Universal Package Dependency Tracker"
+    assert tui.title == "updtr - Universal Package Dependency Tracker"
 
 
 def test_tui_has_required_methods():

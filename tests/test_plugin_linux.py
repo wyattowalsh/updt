@@ -3,10 +3,10 @@
 import pytest
 from unittest.mock import patch
 
-from updt.models.update import UpdateStatus
-from updt.plugins.apt import AptPlugin
-from updt.plugins.dnf import DnfPlugin
-from updt.plugins.flatpak import FlatpakPlugin
+from updtr.models.update import UpdateStatus
+from updtr.plugins.apt import AptPlugin
+from updtr.plugins.dnf import DnfPlugin
+from updtr.plugins.flatpak import FlatpakPlugin
 
 
 # APT Plugin Tests

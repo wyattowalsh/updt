@@ -6,8 +6,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 from typer.testing import CliRunner
 
-from updt.cli import app
-from updt.models.update import UpdateInfo, UpdateStatus
+from updtr.cli import app
+from updtr.models.update import UpdateInfo, UpdateStatus
 
 runner = CliRunner()
 
@@ -16,7 +16,7 @@ def test_cli_help():
     """Test CLI help command."""
     result = runner.invoke(app, ["--help"])
     assert result.exit_code == 0
-    assert "updt" in result.stdout.lower()
+    assert "updtr" in result.stdout.lower()
 
 
 def test_cli_version():
@@ -32,7 +32,7 @@ def test_list_plugins_command():
     assert "plugins" in result.stdout.lower()
 
 
-@patch("updt.cli.UpdateManager")
+@patch("updtr.cli.UpdateManager")
 def test_check_command_basic(mock_manager_class):
     """Test basic check command."""
     mock_manager = AsyncMock()
@@ -44,7 +44,7 @@ def test_check_command_basic(mock_manager_class):
     assert result.exit_code == 0
 
 
-@patch("updt.cli.UpdateManager")
+@patch("updtr.cli.UpdateManager")
 def test_check_command_with_project(mock_manager_class, tmp_path):
     """Test check command with project path."""
     mock_manager = AsyncMock()
@@ -59,7 +59,7 @@ def test_check_command_with_project(mock_manager_class, tmp_path):
     assert result.exit_code == 0
 
 
-@patch("updt.cli.UpdateManager")
+@patch("updtr.cli.UpdateManager")
 def test_check_command_with_updates(mock_manager_class):
     """Test check command with available updates."""
     mock_update = UpdateInfo(
@@ -79,7 +79,7 @@ def test_check_command_with_updates(mock_manager_class):
     assert result.exit_code == 0
 
 
-@patch("updt.cli.UpdateManager")
+@patch("updtr.cli.UpdateManager")
 def test_update_command_basic(mock_manager_class):
     """Test basic update command."""
     mock_manager = AsyncMock()
@@ -92,10 +92,10 @@ def test_update_command_basic(mock_manager_class):
     assert result.exit_code == 0
 
 
-@patch("updt.cli.UpdateManager")
+@patch("updtr.cli.UpdateManager")
 def test_update_command_dry_run(mock_manager_class):
     """Test update command with dry-run flag."""
-    from updt.models.update import UpdateResult
+    from updtr.models.update import UpdateResult
     
     mock_update = UpdateInfo(
         ecosystem="test",
@@ -129,7 +129,7 @@ def test_config_show_command():
     assert result.exit_code == 0
 
 
-@patch("updt.cli.SystemProfile")
+@patch("updtr.cli.SystemProfile")
 def test_profile_command_basic(mock_profile_class):
     """Test basic profile command."""
     mock_profile = AsyncMock()
@@ -140,7 +140,7 @@ def test_profile_command_basic(mock_profile_class):
     assert result.exit_code == 0
 
 
-@patch("updt.cli.SystemProfile")
+@patch("updtr.cli.SystemProfile")
 def test_profile_command_json(mock_profile_class, tmp_path):
     """Test profile command with JSON output."""
     mock_profile = AsyncMock()
@@ -154,7 +154,7 @@ def test_profile_command_json(mock_profile_class, tmp_path):
     assert result.exit_code == 0
 
 
-@patch("updt.cli.SystemProfile")
+@patch("updtr.cli.SystemProfile")
 def test_profile_command_markdown(mock_profile_class, tmp_path):
     """Test profile command with Markdown output."""
     mock_profile = AsyncMock()
@@ -170,7 +170,7 @@ def test_profile_command_markdown(mock_profile_class, tmp_path):
 
 def test_tui_command_import():
     """Test that TUI command is importable."""
-    from updt.cli import app
+    from updtr.cli import app
     
     # Just test that the command exists
     commands = [cmd.name for cmd in app.registered_commands]

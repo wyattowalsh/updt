@@ -2,8 +2,8 @@
 
 import pytest
 from pathlib import Path
-from updt.logging import setup_logging
-from updt.models.config import UpdtConfig
+from updtr.logging import setup_logging
+from updtr.models.config import UpdtConfig
 
 
 def test_setup_logging_text_format():

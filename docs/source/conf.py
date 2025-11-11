@@ -1,4 +1,4 @@
-"""Sphinx configuration for updt documentation."""
+"""Sphinx configuration for updtr documentation."""
 
 import sys
 from pathlib import Path
@@ -7,9 +7,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
 # -- Project information -----------------------------------------------------
-project = "updt"
-copyright = "2024, updt contributors"
-author = "updt contributors"
+project = "updtr"
+copyright = "2024, updtr contributors"
+author = "updtr contributors"
 release = "0.1.0"
 version = "0.1.0"
 
@@ -84,7 +84,7 @@ myst_links_external_new_tab = True
 # -- HTML output -------------------------------------------------------------
 html_theme = "shibuya"
 html_title = f"{project} {release}"
-html_short_title = "updt"
+html_short_title = "updtr"
 html_static_path = ["_static"]
 html_css_files = [
     "css/design-tokens.css",
@@ -95,8 +95,8 @@ html_js_files = ["js/custom.js"]
 html_favicon = "_static/img/favicon/favicon.ico"
 
 html_theme_options = {
-    "nav_title": "updt",
-    "github_url": "https://github.com/wyattowalsh/updt",
+    "nav_title": "updtr",
+    "github_url": "https://github.com/wyattowalsh/updtrr",
     "accent_color": "teal",
     "dark_code": False,
     "color_mode": "auto",
@@ -129,7 +129,7 @@ autodoc2_class_docstring = "merge"
 autodoc2_docstrings = "all"
 autodoc2_packages = [
     {
-        "path": "../../src/updt",
+        "path": "../../src/updtr",
         "exclude": [r".*tests?.*", r".*build.*", r".*dist.*"],
         "auto_mode": True,
     },
@@ -210,7 +210,7 @@ hoverxref_role_types = {
 }
 
 # -- Sitemap & SEO -----------------------------------------------------------
-html_baseurl = "https://wyattowalsh.github.io/updt/"
+html_baseurl = "https://wyattowalsh.github.io/updtr/"
 sitemap_url_scheme = "{link}"
 
 # -- 404 page ----------------------------------------------------------------
@@ -224,8 +224,8 @@ notfound_urls_prefix = "/"
 
 # -- External links ----------------------------------------------------------
 extlinks = {
-    "issue": ("https://github.com/wyattowalsh/updt/issues/%s", "issue %s"),
-    "pr": ("https://github.com/wyattowalsh/updt/pull/%s", "PR %s"),
+    "issue": ("https://github.com/wyattowalsh/updtrr/issues/%s", "issue %s"),
+    "pr": ("https://github.com/wyattowalsh/updtrr/pull/%s", "PR %s"),
 }
 
 # -- Quality & link checking -------------------------------------------------

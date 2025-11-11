@@ -6,8 +6,8 @@ from unittest.mock import AsyncMock, patch
 
 import pytest
 
-from updt.models.update import UpdateInfo, UpdateStatus
-from updt.profile import SystemProfile
+from updtr.models.update import UpdateInfo, UpdateStatus
+from updtr.profile import SystemProfile
 
 
 @pytest.fixture
@@ -34,7 +34,7 @@ async def test_system_profile_initialization():
 
 
 @pytest.mark.asyncio
-@patch("updt.profile.UpdateManager")
+@patch("updtr.profile.UpdateManager")
 async def test_system_profile_generate(mock_manager_class, mock_manager):
     """Test profile generation."""
     mock_manager_class.return_value = mock_manager
@@ -48,7 +48,7 @@ async def test_system_profile_generate(mock_manager_class, mock_manager):
 
 
 @pytest.mark.asyncio
-@patch("updt.profile.UpdateManager")
+@patch("updtr.profile.UpdateManager")
 async def test_system_profile_generate_with_project(mock_manager_class, mock_manager, tmp_path):
     """Test profile generation with project path."""
     mock_manager_class.return_value = mock_manager
@@ -60,7 +60,7 @@ async def test_system_profile_generate_with_project(mock_manager_class, mock_man
 
 
 @pytest.mark.asyncio
-@patch("updt.profile.UpdateManager")
+@patch("updtr.profile.UpdateManager")
 async def test_system_profile_export_json(mock_manager_class, mock_manager, tmp_path):
     """Test exporting profile to JSON."""
     mock_manager_class.return_value = mock_manager
@@ -76,7 +76,7 @@ async def test_system_profile_export_json(mock_manager_class, mock_manager, tmp_
 
 
 @pytest.mark.asyncio
-@patch("updt.profile.UpdateManager")
+@patch("updtr.profile.UpdateManager")
 async def test_system_profile_export_markdown(mock_manager_class, mock_manager, tmp_path):
     """Test exporting profile to Markdown."""
     mock_manager_class.return_value = mock_manager
@@ -92,7 +92,7 @@ async def test_system_profile_export_markdown(mock_manager_class, mock_manager, 
 
 
 @pytest.mark.asyncio
-@patch("updt.profile.UpdateManager")
+@patch("updtr.profile.UpdateManager")
 async def test_system_profile_export_text(mock_manager_class, mock_manager, tmp_path):
     """Test exporting profile to text."""
     mock_manager_class.return_value = mock_manager

@@ -1,4 +1,4 @@
-# Pre-commit hooks for updt
+# Pre-commit hooks for updtr
 # Install: pre-commit install
 # Run manually: pre-commit run --all-files
 
@@ -82,7 +82,7 @@ repos:
     rev: v2.3.0
     hooks:
       - id: codespell
-        args: [--ignore-words-list, "crate,updt,nd"]
+        args: [--ignore-words-list, "crate,updtr,nd"]
         exclude: ^(uv\.lock|\.git/)
 
 # CI configuration

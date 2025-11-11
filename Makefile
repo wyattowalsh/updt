@@ -22,7 +22,7 @@ test: ## Run all tests
 	pytest -v
 
 test-cov: ## Run tests with coverage report
-	pytest --cov=src/updt --cov-report=term-missing --cov-report=html -v
+	pytest --cov=src/updtr --cov-report=term-missing --cov-report=html -v
 
 test-html: ## Generate HTML test report
 	pytest --html=htmlcov/test-report.html --self-contained-html
@@ -57,12 +57,13 @@ docs-serve: docs ## Serve documentation locally
 	cd docs/_build/html && python -m http.server 8000
 
 docs-clean: ## Clean documentation build
-	rm -rf docs/_build
+	@python -c "import shutil; import os; shutil.rmtree('docs/_build', ignore_errors=True) if os.path.exists('docs/_build') else None"
 
 clean: ## Clean all build artifacts
-	rm -rf build dist *.egg-info .pytest_cache .coverage htmlcov .mypy_cache .ruff_cache
-	find . -type d -name __pycache__ -exec rm -rf {} +
-	find . -type f -name "*.pyc" -delete
+	@python -c "import shutil; import os; [shutil.rmtree(d, ignore_errors=True) for d in ['build', 'dist', '.pytest_cache', 'htmlcov', '.mypy_cache', '.ruff_cache'] if os.path.exists(d)]"
+	@python -c "import pathlib; import glob; import shutil; [shutil.rmtree(p) for p in glob.glob('*.egg-info')]"
+	@python -c "import pathlib; import shutil; [shutil.rmtree(str(p)) for p in pathlib.Path('.').rglob('__pycache__')]"
+	@python -c "import pathlib; [p.unlink() for p in pathlib.Path('.').rglob('*.pyc')]"
 
 build: ## Build package wheel
 	python -m build

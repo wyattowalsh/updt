@@ -20,6 +20,7 @@ from .plugins import (  # noqa: F401
     brew,
     bundler,
     cargo,
+    choco,
     conda,
     dnf,
     flatpak,
@@ -33,13 +34,15 @@ from .plugins import (  # noqa: F401
     poetry,
     pyenv,
     rvm,
+    scoop,
     uv_plugin,
+    winget,
     yarn,
 )
 from .updater import UpdateManager
 
 app = typer.Typer(
-    name="updt",
+    name="updtr",
     help="Universal package dependency tracker and updater",
     add_completion=True,
 )
@@ -49,7 +52,7 @@ console = Console()
 def version_callback(value: bool) -> None:
     """Print version and exit."""
     if value:
-        console.print(f"updt version: {__version__}")
+        console.print(f"updtr version: {__version__}")
         raise typer.Exit()
 
 
@@ -242,7 +245,7 @@ def config(
         typer.Option("--show", "-s", help="Show current configuration"),
     ] = False,
 ) -> None:
-    """Manage updt configuration."""
+    """Manage updtr configuration."""
     config = UpdtConfig()
 
     if show:

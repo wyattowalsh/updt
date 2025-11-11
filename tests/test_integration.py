@@ -4,11 +4,11 @@ import pytest
 from pathlib import Path
 from unittest.mock import AsyncMock, patch
 
-from updt.models.config import UpdtConfig
-from updt.models.update import UpdateInfo, UpdateStatus
-from updt.plugins.registry import PluginRegistry
-from updt.updater import UpdateManager
-from updt.profile import SystemProfile
+from updtr.models.config import UpdtConfig
+from updtr.models.update import UpdateInfo, UpdateStatus
+from updtr.plugins.registry import PluginRegistry
+from updtr.updater import UpdateManager
+from updtr.profile import SystemProfile
 
 
 @pytest.mark.asyncio
@@ -35,7 +35,7 @@ async def test_end_to_end_check_and_update_workflow(mock_plugin_registry):
 @pytest.mark.asyncio
 async def test_end_to_end_profile_generation():
     """Test complete profile generation workflow."""
-    with patch("updt.profile.UpdateManager") as mock_manager_class:
+    with patch("updtr.profile.UpdateManager") as mock_manager_class:
         mock_manager = AsyncMock()
         mock_manager.initialize = AsyncMock()
         mock_manager.check_all_updates = AsyncMock(return_value=[
@@ -119,7 +119,7 @@ async def test_end_to_end_error_handling(mock_plugin_registry):
 @pytest.mark.asyncio
 async def test_end_to_end_export_profile(tmp_path):
     """Test complete profile export workflow."""
-    with patch("updt.profile.UpdateManager") as mock_manager_class:
+    with patch("updtr.profile.UpdateManager") as mock_manager_class:
         mock_manager = AsyncMock()
         mock_manager.initialize = AsyncMock()
         mock_manager.check_all_updates = AsyncMock(return_value=[])
@@ -149,7 +149,7 @@ async def test_end_to_end_multiple_plugin_types(mock_plugin_registry):
 @pytest.mark.asyncio
 async def test_end_to_end_logging_configuration():
     """Test that logging is properly configured throughout workflow."""
-    from updt.logging import setup_logging
+    from updtr.logging import setup_logging
     
     config = UpdtConfig(log_level="DEBUG", log_format="jsonl")
     logger = setup_logging(config)
@@ -157,7 +157,7 @@ async def test_end_to_end_logging_configuration():
     assert logger is not None
     
     # Test workflow with logging
-    with patch("updt.updater.registry") as mock_registry:
+    with patch("updtr.updater.registry") as mock_registry:
         mock_registry.list_all.return_value = []
         manager = UpdateManager(config)
         await manager.initialize()

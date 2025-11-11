@@ -1,6 +1,6 @@
 """Tests for data models."""
 
-from updt.models.update import UpdateInfo, UpdateResult, UpdateStatus
+from updtr.models.update import UpdateInfo, UpdateResult, UpdateStatus
 
 
 def test_update_info_creation() -> None:

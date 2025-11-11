@@ -65,7 +65,7 @@ body:
       options:
         - label: I have searched existing issues and PRs
           required: true
-        - label: This feature aligns with updt's goals
+        - label: This feature aligns with updtr's goals
           required: true
         - label: I am willing to contribute this feature
           required: false

@@ -1,6 +1,6 @@
 # API Reference
 
-Python API documentation for updt.
+Python API documentation for updtr.
 
 ## Core Modules
 
@@ -12,13 +12,13 @@ Python API documentation for updt.
 
 ## Quick Links
 
-- {py:mod}`updt.cli` - Command-line interface
-- {py:mod}`updt.updater` - Core update manager
-- {py:mod}`updt.profile` - System profiling
-- {py:mod}`updt.models.config` - Configuration models
-- {py:mod}`updt.models.update` - Update data models
-- {py:mod}`updt.plugins.base` - Plugin base class
-- {py:mod}`updt.plugins.registry` - Plugin registry
+- {py:mod}`updtr.cli` - Command-line interface
+- {py:mod}`updtr.updater` - Core update manager
+- {py:mod}`updtr.profile` - System profiling
+- {py:mod}`updtr.models.config` - Configuration models
+- {py:mod}`updtr.models.update` - Update data models
+- {py:mod}`updtr.plugins.base` - Plugin base class
+- {py:mod}`updtr.plugins.registry` - Plugin registry
 
 ## Module Overview
 
@@ -55,5 +55,5 @@ The complete API documentation is auto-generated from source code docstrings:
 :maxdepth: 3
 :glob:
 
-../reference/updt*
+../reference/updtr*
 ```
