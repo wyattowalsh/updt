@@ -10,12 +10,14 @@ A powerful CLI tool to detect and update dependencies across multiple package ma
 - 🎯 **Smart detection**: Automatically detects installed package managers and available updates
 - ⚡ **Async operations**: Fast concurrent update checking and execution
 - 🎨 **Rich CLI**: Beautiful terminal output with Rich and Textual TUI
+- 📊 **System profiling**: Generate comprehensive reports of installed packages with export to JSON/Markdown
 - 📝 **Structured logging**: JSONL format for easy parsing and analysis
 - 🔧 **Configurable**: Flexible configuration via pyproject.toml, .env, or environment variables
 - 🧪 **Dry-run mode**: Preview changes before applying them
 - 🔌 **Plugin architecture**: Extensible plugin system for new package managers
 - 🔢 **Version managers**: Support for nvm, rvm, and pyenv to manage language versions
 - 🍎 **macOS Integration**: Full support for Homebrew casks and Mac App Store apps
+- 📚 **Comprehensive docs**: Full Sphinx documentation with Shibuya theme
 
 ## Installation
 
@@ -87,6 +89,21 @@ Shows all registered package manager plugins.
 
 ```bash
 updt config --show
+```
+
+### Generate system profile
+
+```bash
+updt profile
+```
+
+Generate a comprehensive report of all installed packages across ecosystems.
+
+Export to file:
+
+```bash
+updt profile --output packages.json
+updt profile --output packages.md --format markdown
 ```
 
 ## Configuration

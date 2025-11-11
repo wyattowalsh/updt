@@ -274,5 +274,41 @@ def list_plugins() -> None:
     console.print(f"\n[dim]Total: {len(plugins)} plugins[/dim]")
 
 
+@app.command()
+def profile(
+    project: Annotated[
+        Path | None,
+        typer.Option("--project", "-p", help="Project directory to check"),
+    ] = None,
+    output: Annotated[
+        Path | None,
+        typer.Option("--output", "-o", help="Export profile to file"),
+    ] = None,
+    format: Annotated[
+        str,
+        typer.Option("--format", "-f", help="Output format (text, json, markdown)"),
+    ] = "text",
+) -> None:
+    """Generate system package profile showing installed packages and their sources."""
+    from .profile import SystemProfile
+
+    config = UpdtConfig()
+    setup_logging(config)
+
+    async def _profile() -> None:
+        profiler = SystemProfile(config)
+
+        if output:
+            # Export to file
+            file_format = "markdown" if format == "markdown" else "json"
+            await profiler.export_to_file(output, project_path=project, format=file_format)
+            console.print(f"\n[green]✓[/green] Profile exported to {output}")
+        else:
+            # Display in console
+            await profiler.generate(project_path=project, output_format=format)
+
+    asyncio.run(_profile())
+
+
 if __name__ == "__main__":
     app()
