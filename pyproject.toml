@@ -19,11 +19,19 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=8.0.0",
-    "pytest-asyncio>=0.23.0",
-    "pytest-cov>=5.0.0",
+    "hypothesis>=6.147.0",
+    "pytest>=8.4.2",
+    "pytest-asyncio>=1.2.0",
+    "pytest-cov>=7.0.0",
+    "pytest-html>=4.1.1",
+    "pytest-icdiff>=0.9",
+    "pytest-instafail>=0.5.0",
+    "pytest-mock>=3.15.1",
+    "pytest-timeout>=2.4.0",
+    "pytest-watch>=4.2.0",
     "mypy>=1.11.0",
     "ruff>=0.5.0",
+    "build>=1.0.0",
 ]
 docs = [
     "sphinx>=7.0.0",
@@ -99,9 +107,38 @@ cargo = true
 softwareupdate = true
 
 [tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q --strict-markers --cov-report=term-missing"
 testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+]
+
+[tool.coverage.run]
+source = ["src/updt"]
+omit = ["*/tests/*", "*/__pycache__/*"]
+branch = true
+
+[tool.coverage.report]
+precision = 2
+show_missing = true
+skip_covered = false
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
 
 [tool.mypy]
 python_version = "3.12"
@@ -127,18 +164,3 @@ skips = ["B603", "B607"]  # Allow subprocess usage with validated inputs
 
 [tool.bandit.assert_used]
 skips = ["*_test.py", "test_*.py"]
-
-[tool.coverage.run]
-source = ["src"]
-omit = ["*/tests/*", "*/test_*.py"]
-
-[tool.coverage.report]
-exclude_lines = [
-    "pragma: no cover",
-    "def __repr__",
-    "raise AssertionError",
-    "raise NotImplementedError",
-    "if __name__ == .__main__.:",
-    "if TYPE_CHECKING:",
-    "@abstractmethod",
-]

@@ -353,36 +353,70 @@ uv run sphinx-build -b html source _build/html
 git clone https://github.com/wyattowalsh/updt.git
 cd updt
 
-# Install dependencies with all extras
-uv sync --all-extras
+# Install all dependencies (recommended)
+make dev
 
-# Run tests
-uv run pytest -v
+# Or install manually
+pip install -e ".[dev,docs]"
 
-# Run linter
-uv run ruff check .
+# Install pre-commit hooks
+make pre-commit
+```
 
-# Format code
-uv run ruff format .
+### Makefile Commands
 
-# Run type checker
-uv run mypy src/
+The project includes a comprehensive **Makefile** with 18 commands for development:
+
+```bash
+make help         # Show all available commands
+
+# Development
+make install      # Install package
+make install-dev  # Install with dev dependencies
+make dev          # Install everything (dev + docs)
+
+# Testing (80 comprehensive tests)
+make test         # Run all tests
+make test-cov     # Run with coverage report (35% currently)
+make test-html    # Generate HTML coverage report
+make test-watch   # Run tests in watch mode
+make test-unit    # Run unit tests only
+make test-integration  # Run integration tests only
+
+# Code Quality
+make lint         # Run linters (ruff + mypy)
+make format       # Auto-format code with ruff
+make check        # Run all checks (lint + test)
+make pre-commit   # Install pre-commit hooks
+
+# Documentation
+make docs         # Build Sphinx documentation
+make docs-serve   # Serve docs locally (http://localhost:8000)
+make docs-clean   # Clean docs build
+
+# Build
+make build        # Build package wheel
+make clean        # Clean all build artifacts
 ```
 
 ### Running Tests
 
 ```bash
-# Run all tests
-uv run pytest
+# Quick test run
+make test
 
-# Run with coverage
-uv run pytest --cov=src/updt --cov-report=html
+# With coverage report
+make test-cov
+
+# Generate HTML coverage report
+make test-html
+# Then open htmlcov/index.html in your browser
 
 # Run specific test file
-uv run pytest tests/test_plugins.py
+pytest tests/test_plugins.py -v
 
-# Run with verbose output
-uv run pytest -v -s
+# Run tests matching a pattern
+pytest -k "test_brew" -v
 ```
 
 ### Project Structure
