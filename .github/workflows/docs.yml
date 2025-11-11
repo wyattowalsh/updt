@@ -46,7 +46,7 @@ jobs:
           sphinx-build -b linkcheck source _build/linkcheck || true
 
       - name: Upload documentation artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: documentation
           path: docs/_build/html/
