@@ -12,23 +12,37 @@ class EcosystemConfig(BaseModel):
 
     model_config = {"extra": "allow"}  # Allow extra fields for testing
 
+    # macOS Ecosystem
     brew: bool = True
-    bundler: bool = True
-    cargo: bool = True
-    conda: bool = True
-    gem: bool = True
     mas: bool = True
-    npm: bool = True
-    nvm: bool = True
+
+    # Python Ecosystem
+    uv: bool = True
     pip: bool = True
     pipx: bool = True
-    pnpm: bool = True
+    conda: bool = True
     poetry: bool = True
     pyenv: bool = True
-    rvm: bool = True
-    softwareupdate: bool = True
-    uv: bool = True
+
+    # Node.js Ecosystem
+    npm: bool = True
     yarn: bool = True
+    pnpm: bool = True
+    nvm: bool = True
+
+    # Ruby Ecosystem
+    gem: bool = True
+    bundler: bool = True
+    rvm: bool = True
+
+    # Linux Ecosystem
+    apt: bool = True
+    dnf: bool = True
+    flatpak: bool = True
+
+    # Other
+    cargo: bool = True
+    softwareupdate: bool = True
 
 
 class UpdtConfig(BaseSettings):

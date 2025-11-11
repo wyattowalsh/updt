@@ -201,7 +201,7 @@ uv run sphinx-build -b html source _build/html
 
 ## Plugin Catalog
 
-Current plugins (16):
+Current plugins (19):
 
 ### Python Ecosystem (6)
 - **uv** - Modern Python package manager
@@ -225,6 +225,11 @@ Current plugins (16):
 ### macOS Ecosystem (2)
 - **brew** - Homebrew (formulae + casks)
 - **mas** - Mac App Store CLI
+
+### Linux Ecosystem (3)
+- **apt** - Advanced Package Tool (Debian, Ubuntu)
+- **dnf** - Dandified YUM (Fedora, RHEL, CentOS)
+- **flatpak** - Universal Linux applications
 
 ### Other (1)
 - **cargo** - Rust package manager

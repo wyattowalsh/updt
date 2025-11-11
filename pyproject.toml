@@ -65,23 +65,38 @@ default_mode = "plan"
 
 [tool.updt.ecosystems]
 # Enable/disable specific package managers
+
+# macOS Ecosystem
 brew = true
-bundler = true
-cargo = true
-conda = true
-gem = true
 mas = true
-npm = true
-nvm = true
+
+# Python Ecosystem
+uv = true
 pip = true
 pipx = true
-pnpm = true
+conda = true
 poetry = true
 pyenv = true
-rvm = true
-softwareupdate = true
-uv = true
+
+# Node.js Ecosystem
+npm = true
 yarn = true
+pnpm = true
+nvm = true
+
+# Ruby Ecosystem
+gem = true
+bundler = true
+rvm = true
+
+# Linux Ecosystem
+apt = true
+dnf = true
+flatpak = true
+
+# Other
+cargo = true
+softwareupdate = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -99,5 +114,31 @@ line-length = 100
 target-version = "py312"
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "N", "W", "UP"]
-ignore = []
+select = ["E", "F", "I", "N", "W", "UP", "B", "S", "C90", "RUF"]
+ignore = ["S603", "S607"]  # Allow subprocess calls, they're validated
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.bandit]
+targets = ["src/updt"]
+exclude_dirs = ["tests", "docs"]
+skips = ["B603", "B607"]  # Allow subprocess usage with validated inputs
+
+[tool.bandit.assert_used]
+skips = ["*_test.py", "test_*.py"]
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["*/tests/*", "*/test_*.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "@abstractmethod",
+]

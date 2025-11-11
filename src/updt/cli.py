@@ -16,10 +16,13 @@ from .models.config import UpdtConfig
 
 # Import plugins to register them
 from .plugins import (  # noqa: F401
+    apt,
     brew,
     bundler,
     cargo,
     conda,
+    dnf,
+    flatpak,
     gem,
     mas,
     npm,
