@@ -22,7 +22,7 @@ jobs:
 
       - name: Auto-commit changes
         if: failure()
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "style: auto-fix pre-commit issues"
           commit_user_name: "pre-commit-ci[bot]"
